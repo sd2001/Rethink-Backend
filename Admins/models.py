@@ -20,7 +20,7 @@ class CreatePractioner(models.Model):
     IFSC_number = models.CharField(max_length=11)
     
     def __str__(self):
-        self.doc = self.name + "(" + self.specialization + ")"
+        self.doc = self.name + "(" + self.specialization + ")" + "(" + self.id + ")"
         return self.doc
     
     

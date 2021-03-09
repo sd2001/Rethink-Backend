@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from Admins.models import CreatePractioner
 from .models import Available, Slots
 from .serializers import CreateSerializer, AvailableSerializer, SlotSerializer
-import json
+import json, datetime
 # Create your views here.
 class Profile(viewsets.ViewSet):
 	def getProfile(self, request, pk=None):
@@ -27,17 +27,17 @@ class Profile(viewsets.ViewSet):
 		except Exception as e:
 			return Response(status = status.HTTP_404_NOT_FOUND)       
 		
-def makeslots(id,name,start_time,end_time):	
+def makeslots(id,name,start_time,end_time,slot_time):	
 	start_date = datetime.datetime.now().date()
 	end_date = datetime.datetime.now().date()
 	days = []
 	date = start_date
 	while date <= end_date:
 		hours = []
-		time = datetime.datetime.strptime(start_time, '%H:%M')
-		end = datetime.datetime.strptime(end_time, '%H:%M')
+		time = datetime.datetime.strptime(start_time, '%H:%M:%S')
+		end = datetime.datetime.strptime(end_time, '%H:%M:%S')
 		while time <= end:
-			hours.append(time.strftime("%H:%M"))
+			hours.append(time.strftime("%H:%M:%S"))
 			time += datetime.timedelta(minutes=slot_time)
 		date += datetime.timedelta(days=1)
 		days.append(hours)
@@ -52,24 +52,34 @@ def makeslots(id,name,start_time,end_time):
 	return slots
 class Availability(viewsets.ViewSet):
 	def setTime(self, request):		
-		serializer = AvailableSerializer(data = request.data)
-		# d = serializer.data	
-		# slot_val = makeslots(d.id, d.name, d.start_time, d.end_date)
-		# # s_o = Slot()
-		# slot_data = {
-		# 	'id' : d.id,
-		# 	'name': d.name,
-		# 	'slots': slot_val,
-		# }
-		# slot_serial = SlotSerializer(slot_data)
+		serializer = AvailableSerializer(data = request.data)		
 		if serializer.is_valid():
 			serializer.save()
-			# slot_serial.save()
+			d = serializer.data	
+			slot_val = makeslots(d['id'], d['name'], d['start1'], d['end1'], d['maxtime'])
+			# s_o = Slot()
+			slot_data = {
+				'id' : d['id'],
+				'name': d['name'],
+				'slots': slot_val,
+			}
+			slot_serial = SlotSerializer(data = slot_data)
+			if slot_serial.is_valid():
+					slot_serial.save()
 			return Response(serializer.data, status.HTTP_201_CREATED)
 		return Response(status.HTTP_206_PARTIAL_CONTENT)
 		# except Exception as e:
 		# 	return Response(status = status.HTTP_406_NOT_ACCEPTABLE)
-
+	def getAll(self, request):
+		try:
+			det = Available.objects.all()
+			if det is None:
+				return HttpResponse(status = 404)				
+			serializer = AvailableSerializer(det, many=True)
+			return Response(serializer.data, status.HTTP_200_OK)
+		except Exception:
+			return Response(status = status.HTTP_404_NOT_FOUND)  
+   
 	def getTime(self, request, pk):
 		try:
 			det = Available.objects.get(id = pk)

@@ -14,7 +14,8 @@ urlpatterns = [
 		'get': 'getTime',		
 	}), name = "View and update Time Slots"),
   
-    path('availadd', Availability.as_view({
+    path('avail', Availability.as_view({
+        'get': 'getAll',
 		'post': 'setTime',
 	}), name = "Setting Time"),
     
