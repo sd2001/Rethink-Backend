@@ -21,8 +21,7 @@ class Available(models.Model):
         self.slots = f"{self.name}: ({self.start1} - {self.end1})"
         return self.name
     
-# class Appointment(models.Model):
-    
+# class Appointment(models.Model): 
 class Slots(models.Model):
     id = models.CharField(primary_key = True, max_length=6)
     name = models.CharField(default = "None", max_length=100)
@@ -31,6 +30,6 @@ class Slots(models.Model):
     
     def __str__(self):
         self.doc = self.name + "(" + self.id + ")"
-        return self.doc
+        return self.
 
     
