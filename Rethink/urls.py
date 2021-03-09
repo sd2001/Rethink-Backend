@@ -9,5 +9,6 @@ from django.shortcuts import redirect
 urlpatterns = [
     path('', include('Admins.urls')),
     path('admin/', admin.site.urls),
-    path('manage/', include('Admins.urls'))
+    path('manage/', include('Admins.urls')),
+    path('doctors/', include('Practioners.urls')),
 ]
