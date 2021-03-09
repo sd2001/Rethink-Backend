@@ -19,14 +19,14 @@ class Manage_Clinic(viewsets.ViewSet):
 		return HttpResponse(status = 404)
 
 	def post_practioners(self,request):	
-		try:	
-			serializer =CreateSerializer(data = request.data)
-			if serializer.is_valid():
-				serializer.save()
-				return Response(serializer.data, status.HTTP_201_CREATED)
-			return Response(status.HTTP_206_PARTIAL_CONTENT)
-		except Exception as e:
-			return Response(status = status.HTTP_406_NOT_ACCEPTABLE)
+		# try:	
+		serializer =CreateSerializer(data = request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status.HTTP_201_CREATED)
+		return Response(status.HTTP_206_PARTIAL_CONTENT)
+		# except Exception as e:
+		# 	return Response(status = status.HTTP_406_NOT_ACCEPTABLE)
         
     
 def home(request):

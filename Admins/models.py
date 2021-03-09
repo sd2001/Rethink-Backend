@@ -12,7 +12,7 @@ class CreatePractioner(models.Model):
     name = models.CharField(max_length=100)
     picture_link = models.CharField(max_length=100)
     specialization = models.CharField(max_length=100)
-    date_joined = models.DateField(default=timezone.now, editable = False)
+    date_joined = models.DateTimeField(auto_now = True, editable = False)
     phone_number = models.IntegerField()
     available = models.BooleanField(default=False)
     PAN_number = models.CharField(max_length=10)
@@ -20,7 +20,7 @@ class CreatePractioner(models.Model):
     IFSC_number = models.CharField(max_length=11)
     
     def __str__(self):
-        self.doc = self.name + "(" + self.specialization + ")" + "(" + self.id + ")"
+        self.doc = self.name + "(" + self.specialization + ")"
         return self.doc
     
     
