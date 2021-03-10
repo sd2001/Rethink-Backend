@@ -9,8 +9,8 @@ import uuid
 # Create your models here.
 
 class Available(models.Model):
-    id = models.CharField(primary_key = True, default="xyz", editable = True,
-                          max_length=6)
+    id = models.UUIDField(primary_key = True, default="YourID", editable = True,
+                          max_length=36)
     name = models.CharField(default = "None", max_length=100)
     date = models.DateTimeField(auto_now=True , editable = False)
     start1 = models.TimeField("Start(hh:mm:ss)", blank=False)
@@ -23,13 +23,13 @@ class Available(models.Model):
     
 # class Appointment(models.Model): 
 class Slots(models.Model):
-    id = models.CharField(primary_key = True, max_length=6)
+    id = models.UUIDField(primary_key = True, max_length=36)
     name = models.CharField(default = "None", max_length=100)
     date = models.DateField(auto_now_add=True, editable = False)
     slots = models.JSONField(null = True)
     
     def __str__(self):
-        self.doc = self.name + "(" + self.id + ")"
+        self.doc = self.name + "(" + str(self.id) + ")"
         return self.doc
 
 

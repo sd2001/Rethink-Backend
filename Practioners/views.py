@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from Admins.models import CreatePractioner
@@ -48,8 +49,8 @@ def makeslots(id,name,start_time,end_time,slot_time):
 		for h in hours:
 			av[h] = False
 		slots[datetime.date.today().strftime("%d-%m-%y")] = av
-	slots = json.dumps(slots)
-	return slots
+	# slots = json.dumps(slots)
+	return JsonResponse(slots)
 class Availability(viewsets.ViewSet):
 	def setTime(self, request):		
 		serializer = AvailableSerializer(data = request.data)		

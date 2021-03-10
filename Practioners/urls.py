@@ -9,7 +9,7 @@ urlpatterns = [
      	'put': 'updateProfile',
 	}), name = "View and Update Profile"),
  
- 	path('avail/<str:pk>', Availability.as_view({
+ 	path('avail/<uuid:pk>', Availability.as_view({
 		'put': 'UpdateTime',
 		'get': 'getTime',		
 	}), name = "View and update Time Slots"),
