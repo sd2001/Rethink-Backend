@@ -9,7 +9,7 @@ import uuid
 # Create your models here.
 
 class Available(models.Model):
-    id = models.CharField(primary_key = True, editable = True,
+    id = models.CharField(primary_key = True, default="xyz", editable = True,
                           max_length=6)
     name = models.CharField(default = "None", max_length=100)
     date = models.DateTimeField(auto_now=True , editable = False)
@@ -30,6 +30,7 @@ class Slots(models.Model):
     
     def __str__(self):
         self.doc = self.name + "(" + self.id + ")"
-        return self.
+        return self.doc
+
 
     

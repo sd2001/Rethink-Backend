@@ -7,7 +7,7 @@ from .serializers import CreateSerializer, AvailableSerializer, SlotSerializer
 import json, datetime
 # Create your views here.
 class Profile(viewsets.ViewSet):
-	def getProfile(self, request, pk=None):
+	def getProfile(self, request, pk):
 		try:
 			det = CreatePractioner.objects.get(id = pk)
 			print(det, type(det))

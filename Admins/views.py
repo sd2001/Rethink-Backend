@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from .models import CreatePractioner
-from .serializers import CreateSerializer
+from .serializers import CreateSerializer,AvailableSerializer
 # Create your views here.
 
 class Manage_Clinic(viewsets.ViewSet):
@@ -23,6 +23,19 @@ class Manage_Clinic(viewsets.ViewSet):
 		serializer =CreateSerializer(data = request.data)
 		if serializer.is_valid():
 			serializer.save()
+			# d = serializer.data
+			# ava = {
+			# 	'id' : d['id'], 
+    		# 	'name' : d['name'], 
+			# 	'start1' : '00:00:00',
+			# 	'end1' : '00:00:00',
+			# 	'maxtime' : '0',
+			# 	'available' : False,
+			# }
+			# print(ava)
+			# ava_serial = AvailableSerializer(data = ava)
+			# if ava_serial.is_valid():
+			# 	ava_serial.save()
 			return Response(serializer.data, status.HTTP_201_CREATED)
 		return Response(status.HTTP_206_PARTIAL_CONTENT)
 		# except Exception as e:

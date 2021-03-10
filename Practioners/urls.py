@@ -4,7 +4,7 @@ from .views import Profile, Availability, home, SlotCheck
 urlpatterns = [
 	path('', home, name = "index"),
  
-	path('profile/<str:pk>', Profile.as_view({
+	path('profile/<uuid:pk>', Profile.as_view({
     	'get': 'getProfile',
      	'put': 'updateProfile',
 	}), name = "View and Update Profile"),
