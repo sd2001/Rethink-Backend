@@ -8,7 +8,7 @@ from .serializers import R_Serializer, RV_Serializer, B_Serializer, BV_Serialize
 from Rethink import settings
 from Practioners.models import Available, Slots
 from Practioners.serializers import CreateSerializer, AvailableSerializer, SlotSerializer
-
+import datetime
 import uuid
 # Create your views here.
 
@@ -96,12 +96,16 @@ class BookingSlots(viewsets.ViewSet):
         dr_id = uuid.UUID(det['dr_id'])
         slot_time = det['slot']
         slot_det = Slots.objects.get(id=dr_id)
-        date = slot_det.date
+        print(slot_det)
+        date = datetime.date.today().strftime("%Y-%m-%d")
         a = slot_det.slots[date]
         
         print(a, type(a))
-        # slot_det.slots[date][slot_time] = True 
+        slot_det.slots[date][slot_time] = True 
         slot_det.save()
+        bs = B_Serializer(data = det)
+        if bs.is_valid():
+            bs.save()
         return Response(status = status.HTTP_201_CREATED)
         # return Response(status.HTTP_206_PARTIAL_CONTENT)
     def getBookings(self, request):
@@ -120,7 +124,20 @@ class BookingSlots(viewsets.ViewSet):
         book_det = Booking.objects.get(id=booking_id)
         book_det.payment = True
         book_det.save()
+        bvs = BV_Serializer(data = det)
+        if bvs.is_valid():
+            bvs.save()
         return Response("Payment Done", status.HTTP_200_OK)
+    
+    def getpay(self, request):
+        try:
+            det = PaymentVerify.objects.all()
+            if det is None:
+                return HttpResponse(status = 404)				
+            serializer = BV_Serializer(det, many=True)
+            return Response(serializer.data, status.HTTP_200_OK)
+        except Exception:
+            return Response(status = status.HTTP_404_NOT_FOUND)
         
     
         

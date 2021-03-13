@@ -48,7 +48,7 @@ def makeslots(id,name,start_time,end_time,slot_time):
 		av = {}
 		for h in hours:
 			av[h] = False
-		slots[datetime.date.today().strftime("%d-%m-%y")] = av
+		slots[datetime.date.today().strftime("%Y-%m-%d")] = av
 	# slots = json.dumps(slots)
 	return slots
 class Availability(viewsets.ViewSet):

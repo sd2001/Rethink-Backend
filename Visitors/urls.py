@@ -28,6 +28,7 @@ urlpatterns = [
 	}), name = 'Booking Details'),
     
     path('bookverify', BookingSlots.as_view({
+        'get': 'getpay',
 		'post' : 'pay_done' 
 	}), name = 'Complete Payment')
  
