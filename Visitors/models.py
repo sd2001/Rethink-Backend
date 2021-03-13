@@ -32,9 +32,10 @@ class RegisterVerify(models.Model):
         return self.doc
         
 class Booking(models.Model):
-    id = models.UUIDField(primary_key=True, editable=False)
-    app_id = models.UUIDField(editable=True)
+    id = models.UUIDField(primary_key=True, default = uuid.uuid4(), editable=False)
+    patient_id = models.UUIDField(editable=True)
     name = models.CharField(blank=False, max_length=50)
+    email = models.EmailField(default="xyz@gmail.com" ,blank=False, max_length=150)
     dr_id = models.UUIDField(blank=False)
     slot = models.TimeField("Slot(hh:mm:ss)", blank=False)
     date = models.DateTimeField(auto_now=True , editable = False)
@@ -49,9 +50,11 @@ class Booking(models.Model):
 class PaymentVerify(models.Model):
     id = models.UUIDField(primary_key=True, editable=True)  
     name = models.CharField(blank=False, max_length=50)  
-    pid = models.UUIDField(editable=True)      
-    app_id = models.UUIDField(editable=True)  
+    patient_id = models.UUIDField(editable=True)      
+    dr_id = models.UUIDField(editable=True)  
     amount = models.IntegerField()
+    # otp = models.CharField(blank=False, max_length=5)
+
     
     def __str__(self):
         self.doc = self.name + " - " + str(self.amount)

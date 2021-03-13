@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import Register_Visitor, Register_verify, home
+from .views import Register_Visitor, Register_verify, home, BookingSlots
+
 
 urlpatterns = [
 	path('', home, name='index'),
@@ -19,6 +20,15 @@ urlpatterns = [
     
     path('verify/<str:pk>', Register_verify.as_view({
 		'get' : 'get1verify'
- 	}), name = 'Get user credentials')
+ 	}), name = 'Get user credentials'),
+    
+    path('bookslot', BookingSlots.as_view({
+		'post' : 'postBooking',
+		'get' : 'getBookings' 
+	}), name = 'Booking Details'),
+    
+    path('bookverify', BookingSlots.as_view({
+		'post' : 'pay_done' 
+	}), name = 'Complete Payment')
  
 ]

@@ -50,7 +50,7 @@ def makeslots(id,name,start_time,end_time,slot_time):
 			av[h] = False
 		slots[datetime.date.today().strftime("%d-%m-%y")] = av
 	# slots = json.dumps(slots)
-	return JsonResponse(slots)
+	return slots
 class Availability(viewsets.ViewSet):
 	def setTime(self, request):		
 		serializer = AvailableSerializer(data = request.data)		

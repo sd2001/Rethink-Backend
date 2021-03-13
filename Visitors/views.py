@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from .models import Register, RegisterVerify, Booking, PaymentVerify
 from .serializers import R_Serializer, RV_Serializer, B_Serializer, BV_Serializer
 from Rethink import settings
+from Practioners.models import Available, Slots
+from Practioners.serializers import CreateSerializer, AvailableSerializer, SlotSerializer
+
 import uuid
 # Create your views here.
 
@@ -85,7 +88,45 @@ class Register_verify(viewsets.ViewSet):
             return Response(serializer.data, status=status.HTTP_302_FOUND)
         except Exception:
             return Response(status = status.HTTP_404_NOT_FOUND)       
+
+class BookingSlots(viewsets.ViewSet):
+    def postBooking(self, request):
+        det =request.data
+        print(det)
+        dr_id = uuid.UUID(det['dr_id'])
+        slot_time = det['slot']
+        slot_det = Slots.objects.get(id=dr_id)
+        date = slot_det.date
+        a = slot_det.slots[date]
         
+        print(a, type(a))
+        # slot_det.slots[date][slot_time] = True 
+        slot_det.save()
+        return Response(status = status.HTTP_201_CREATED)
+        # return Response(status.HTTP_206_PARTIAL_CONTENT)
+    def getBookings(self, request):
+        try:
+            det = Booking.objects.all()
+            if det is None:
+                return HttpResponse(status = 404)				
+            serializer = B_Serializer(det, many=True)
+            return Response(serializer.data, status.HTTP_200_OK)
+        except Exception:
+            return Response(status = status.HTTP_404_NOT_FOUND)
+        
+    def pay_done(self, request):
+        det = request.data
+        booking_id = uuid.UUID(det["id"])
+        book_det = Booking.objects.get(id=booking_id)
+        book_det.payment = True
+        book_det.save()
+        return Response("Payment Done", status.HTTP_200_OK)
+        
+    
+        
+    
+    
+    
 
 def home(request):
     return render(request, 'index.html')
