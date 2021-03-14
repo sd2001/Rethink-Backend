@@ -68,7 +68,7 @@ In the .env file, kindly add desired email and password(with smtp enabled to use
 
       -    Get list of Practitioners(get)
       -    Add a Practitioner(post)
-      -    
+        
 Schema: 
 {
         "name": "Dr 1",
@@ -96,7 +96,7 @@ Profile Endpoints for Doctors:
 
 *URL:  127.0.0.1:8000/doctors/profile/<uuid:pk>*
 
-     -    Get a particular profile(post)
+     -  Get a particular profile(post)
      -  Update a particular profile(put - update the values to be changed here)
      
    {
@@ -125,7 +125,7 @@ Availability Endpoints for Doctors:
 
      -     Get particular doctor’s time(get)
      -     Update time(put - update the values to be changed here)
-     -     
+      
 {
     "id": "98fded74-9775-4348-9505-7a9a1a60634e",
     "name": "Dr2",
@@ -138,7 +138,7 @@ Availability Endpoints for Doctors:
 
 *URL: 127.0.0.1:8000/doctors/avail*
 
-    -     Get all doctors available times(get)
+    -    Get all doctors available times(get)
     -    Post doctors available time(slots get created via this)
     -    
    {
@@ -206,7 +206,7 @@ Verifying the patient email using OTP
 
     -   Get the otp(s) for all the patient from database(get)
     -   Post the otp to verify user = True(post)[this set the user.verify = True]
-    -   
+    
 {
     "id": "5326ce22-b027-4289-8457-569518c14944",
     "otp": "eb130"
