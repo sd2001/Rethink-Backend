@@ -9,8 +9,9 @@ Added Error handling
 **Tasks(Remaining):**
 Couldn’t make the swagger interface for the endpoints as swagger doesn’t come in-built with django. Django rest swagger can be used, but it's obsolete with its support ended for versions > django 3.0.5, while django is currently 3.1.6. But I have used API Viewsets, we can get a near-swagger like output in the browser
 
-**Kindly ignore the dummy names used in the API Schemas.
-**Kindly ignore the word “PRACTITIONER” mentioned as “PRACTIONER” several times.
+**Kindly ignore the dummy names used in the API Schemas.**
+
+**Kindly ignore the word “PRACTITIONER” mentioned as “PRACTIONER” several times.**
 
 
 
@@ -24,22 +25,28 @@ Couldn’t make the swagger interface for the endpoints as swagger doesn’t com
 
 ```
  pip install virtualenv
- 
+ ```
+ ``` 
  virtualenv env
- 
+ ```
+ ``` 
  source env/bin/activate
- 
+ ```
+ ```
  pip install -r requirements.txt
- 
- python manage.py createsuperuser
+ ```
+ ```
+  python manage.py createsuperuser
    (To access the django-admin)
-   
+ ```  
+ ```
  python manage.py makemigrations
- 
+ ```
+ ```
  python manage.py migrate
- 
+ ```
+ ```
  python manage.py runserver
-
 ```
 
 In the .env file, kindly add desired email and password(with smtp enabled to use the mail feature)
@@ -51,9 +58,9 @@ In the .env file, kindly add desired email and password(with smtp enabled to use
 
 
 
-**ADMIN:
+**ADMIN:**
 
-*URL : 127.0.0.1:8000/manage/admin
+*URL : 127.0.0.1:8000/manage/admin*
 
       -    Get list of Practitioners(get)
       -    Add a Practitioner(post)
@@ -79,11 +86,11 @@ Schema:
 
 
 
-**PRACTITIONERS:
+**PRACTITIONERS:**
 
 Profile Endpoints for Doctors:
 
-*URL:  127.0.0.1:8000/doctors/profile/<uuid:pk>
+*URL:  127.0.0.1:8000/doctors/profile/<uuid:pk>*
 
      -    Get a particular profile(post)
      -  Update a particular profile(put - update the values to be changed here)
@@ -110,7 +117,7 @@ Profile Endpoints for Doctors:
 
 Availability Endpoints for Doctors:
 
-*URL: 127.0.0.1:8000/doctors/avail/<uuid:pk>
+*URL: 127.0.0.1:8000/doctors/avail/<uuid:pk>*
 
      -     Get particular doctor’s time(get)
      -     Update time(put - update the values to be changed here)
@@ -125,7 +132,7 @@ Availability Endpoints for Doctors:
 
 
 
-*URL: 127.0.0.1:8000/doctors/avail
+*URL: 127.0.0.1:8000/doctors/avail*
 
     -     Get all doctors available times(get)
     -    Post doctors available time(slots get created via this)
@@ -142,13 +149,13 @@ Availability Endpoints for Doctors:
 
 Slot Checking for booking:
 
-*URL: http://127.0.0.1:8000/doctors/slots
+*URL: http://127.0.0.1:8000/doctors/slots*
 
     -   Get all the slots as selected by the doctors(get)
 
 
 Check Booked Slots:(FORGOT TO SHOW THIS IN VIDEO)
-*URL: http://127.0.0.1:8000/doctors/booking/<uuid:pk>
+*URL: http://127.0.0.1:8000/doctors/booking/<uuid:pk>*
 
     -  Get the bookings for a particular doctor(get)
 
@@ -157,11 +164,11 @@ Check Booked Slots:(FORGOT TO SHOW THIS IN VIDEO)
 
 
 
-**VISITORS:
+**VISITORS:**
 
 Registering Patients:
 
-*URL: http://127.0.0.1:8000/patients/register
+*URL: http://127.0.0.1:8000/patients/register*
 
      -  Getting the list of all visitors(get)
      -  Add a visitor(post)
@@ -182,7 +189,7 @@ Registering Patients:
 
 Getting Details of a patient:
 
-*URL: http://127.0.0.1:8000/patients/register/<uuid:pk>
+*URL: http://127.0.0.1:8000/patients/register/<uuid:pk>*
 
     -  Get the patient details(get)
 
@@ -191,7 +198,7 @@ Getting Details of a patient:
 
 Verifying the patient email using OTP
 
-URL: http://127.0.0.1:8000/patients/verify
+*URL: http://127.0.0.1:8000/patients/verify*
 
     -   Get the otp(s) for all the patient from database(get)
     -   Post the otp to verify user = True(post)[this set the user.verify = True]
@@ -201,14 +208,14 @@ URL: http://127.0.0.1:8000/patients/verify
     "otp": "eb130"
 }
 
-URL: http://127.0.0.1:8000/patients/verify/<uuid:pk>
+*URL: http://127.0.0.1:8000/patients/verify/<uuid:pk>*
 
      -  Get verification details for a single patient
 
 
 Booking Slots:
 
-*URL: http://127.0.0.1:8000/patients/bookslot
+*URL: http://127.0.0.1:8000/patients/bookslot*
 
      -   Get the booked slots(get)
      -   Post booking slots(post - booking as per empty slots(false))
@@ -224,9 +231,9 @@ Booking Slots:
         "payment": false
     }
 
-Payment for Booking/:
+Payment for Booking:
 
-*URL: http://127.0.0.1:8000/patients/bookverify
+*URL: http://127.0.0.1:8000/patients/bookverify*
 
     -  Get all the payment info for the users who’ve paid(get)
     -  Post the payment schema to make payment = true(post)
