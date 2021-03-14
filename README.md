@@ -20,8 +20,12 @@ Couldn’t make the swagger interface for the endpoints as swagger doesn’t com
 <h2>In the terminal:</h2>
 
 - Fork The Repo
-- git clone https://github.com/sd2001/Rethink-Backend.git
-- cd Rethink-Backend
+ ```
+ git clone https://github.com/sd2001/Rethink-Backend.git
+ ```
+ ```
+ cd Rethink-Backend
+ ```
 
 ```
  pip install virtualenv
