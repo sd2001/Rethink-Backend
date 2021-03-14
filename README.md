@@ -15,9 +15,9 @@ Couldn’t make the swagger interface for the endpoints as swagger doesn’t com
 
 
 
-**How to Start/Setup the Project:**
+<h2>How to Start/Setup the Project:</h2>
 
-<h2>In the terminal:</h2>
+<h4>In the terminal:</h4>
 
 - Fork The Repo
  ```
@@ -92,7 +92,7 @@ Schema:
 
 **PRACTITIONERS:**
 
-Profile Endpoints for Doctors:
+- Profile Endpoints for Doctors:
 
 *URL:  127.0.0.1:8000/doctors/profile/<uuid:pk>*
 
@@ -119,7 +119,7 @@ Profile Endpoints for Doctors:
 
 
 
-Availability Endpoints for Doctors:
+- Availability Endpoints for Doctors:
 
 *URL: 127.0.0.1:8000/doctors/avail/<uuid:pk>*
 
@@ -151,14 +151,14 @@ Availability Endpoints for Doctors:
 
 
 
-Slot Checking for booking:
+- Slot Checking for booking:
 
 *URL: http://127.0.0.1:8000/doctors/slots*
 
     -   Get all the slots as selected by the doctors(get)
 
 
-Check Booked Slots:(FORGOT TO SHOW THIS IN VIDEO)
+- Check Booked Slots:(FORGOT TO SHOW THIS IN VIDEO)
 *URL: http://127.0.0.1:8000/doctors/booking/<uuid:pk>*
 
     -  Get the bookings for a particular doctor(get)
@@ -170,7 +170,7 @@ Check Booked Slots:(FORGOT TO SHOW THIS IN VIDEO)
 
 **VISITORS:**
 
-Registering Patients:
+- Registering Patients:
 
 *URL: http://127.0.0.1:8000/patients/register*
 
@@ -191,7 +191,7 @@ Registering Patients:
     }
 
 
-Getting Details of a patient:
+- Getting Details of a patient:
 
 *URL: http://127.0.0.1:8000/patients/register/<uuid:pk>*
 
@@ -200,7 +200,7 @@ Getting Details of a patient:
 
 
 
-Verifying the patient email using OTP
+- Verifying the patient email using OTP
 
 *URL: http://127.0.0.1:8000/patients/verify*
 
@@ -217,7 +217,7 @@ Verifying the patient email using OTP
      -  Get verification details for a single patient
 
 
-Booking Slots:
+- Booking Slots:
 
 *URL: http://127.0.0.1:8000/patients/bookslot*
 
@@ -235,7 +235,7 @@ Booking Slots:
         "payment": false
     }
 
-Payment for Booking:
+- Payment for Booking:
 
 *URL: http://127.0.0.1:8000/patients/bookverify*
 
